@@ -3,7 +3,7 @@
 if [[ -z "${PASSWORD}" ]]; then
   export PASSWORD="5c301bb8-6c77-41a0-a606-4ba11bbab084"
 fi
-echo ${PASSWORD}
+echo "Password" ${PASSWORD}
 
 export PASSWORD_JSON="$(echo -n "$PASSWORD" | jq -Rc)"
 
@@ -15,17 +15,18 @@ if [[ -z "${V2_Path}" ]]; then
   export V2_Path="s233"
 fi
 export V2_Path="$V2_Path_$PASSWORD"
-echo ${V2_Path}
+echo "V2 Path" ${V2_Path}
 
 if [[ -z "${QR_Path}" ]]; then
   export QR_Path="/qr_img"
 fi
 export QR_Path="$QR_Path_$PASSWORD"
-echo ${QR_Path}
+echo "QR Path" ${QR_Path}
 
 if [[ -z "${DOMAIN}" ]]; then
   echo "Domain variable is required!"
 fi
+echo "Domain " ${DOMAIN}
 
 bash /conf/shadowsocks-libev_config.json >  /etc/shadowsocks-libev/config.json
 echo /etc/shadowsocks-libev/config.json
