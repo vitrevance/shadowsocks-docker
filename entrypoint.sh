@@ -14,13 +14,13 @@ fi
 if [[ -z "${V2_Path}" ]]; then
   export V2_Path="s233"
 fi
-export V2_Path="$V2_Path_$PASSWORD"
+export V2_Path="${V2_Path}_${PASSWORD}"
 echo "V2 Path" ${V2_Path}
 
 if [[ -z "${QR_Path}" ]]; then
   export QR_Path="/qr_img"
 fi
-export QR_Path="$QR_Path_$PASSWORD"
+export QR_Path="${QR_Path}_${PASSWORD}"
 echo "QR Path" ${QR_Path}
 
 if [[ -z "${DOMAIN}" ]]; then
