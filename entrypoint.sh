@@ -14,21 +14,18 @@ fi
 if [[ -z "${V2_Path}" ]]; then
   export V2_Path="s233"
 fi
+export V2_Path="$V2_Path_$PASSWORD"
 echo ${V2_Path}
 
 if [[ -z "${QR_Path}" ]]; then
   export QR_Path="/qr_img"
 fi
+export QR_Path="$QR_Path_$PASSWORD"
 echo ${QR_Path}
 
-case "$AppName" in
-	*.*)
-		export DOMAIN="$AppName"
-		;;
-	*)
-		export DOMAIN="$AppName.herokuapp.com"
-		;;
-esac
+if [[ -z "${DOMAIN}" ]]; then
+  echo "Domain variable is required!"
+fi
 
 bash /conf/shadowsocks-libev_config.json >  /etc/shadowsocks-libev/config.json
 echo /etc/shadowsocks-libev/config.json
@@ -39,7 +36,7 @@ echo /etc/nginx/conf.d/ss.conf
 cat /etc/nginx/conf.d/ss.conf
 
 
-if [ "$AppName" = "no" ]; then
+if [ "$GenQR" = "no" ]; then
   echo "Do not generate QR-code"
 else
   [ ! -d /wwwroot/${QR_Path} ] && mkdir /wwwroot/${QR_Path}
